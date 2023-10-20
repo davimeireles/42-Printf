@@ -1,16 +1,19 @@
 #include "ft_printf.h"
 
-int ft_print_str(char *str)
+void ft_print_str(va_list args, int *print)
 {
-	int count;
+	char *str;
 
-	count = 0;
-	if (str == NULL)
+	str = va_arg(args,char *);
+	if(str == NULL)
 	{
 		write(1, "(null)", 6);
-		return 6;
+		*print += 6;
+		return ;
 	}
-	while (str[count])
-		write(1, &str[count++], 1);
-	return count;
+	while (*str)
+	{
+		write(1, &*str++, 1);
+		*print += 1;
+	}
 }

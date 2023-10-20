@@ -1,7 +1,8 @@
 #include "ft_printf.h"
 
-int ft_print_char(char arg)
+void ft_print_char(va_list args, int *print)
 {
-	write(1, &arg, 1);
-	return 1;
+	char c = va_arg(args,int);
+	write(1, &c, 1);
+	*print += 1;
 }

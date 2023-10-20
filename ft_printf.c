@@ -11,29 +11,38 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int ft_printf(const char *format, ...)
+static void check_flags(const char *format, va_list args, int *print)
 {
-	va_list args;
-	va_start(args, format);
-	int print;
-	print = 0;
 	while (*format)
 	{
 		if (*format == '%')
 		{
 			format++;
-			if (*format == 's')
-				print += ft_print_str(va_arg(args, char *));
-			if (*format == 'i' || *format == 'd')
-				print += ft_print_number(va_arg(args, int));
 			if (*format == 'c')
-				print += ft_print_char(va_arg(args, int));
-		} else
-			print += ft_print_char(*format);
+				ft_print_char(args, print);
+			if (*format == 's')
+				ft_print_str(args,print);
+			if (*format == 'd' || *format == 'i' || *format == 'u')
+				ft_print_nbr(format,args,print);
+		}
+		else
+		{
+			write(1, format, 1);
+			*print += 1;
+		}
 		format++;
 	}
+}
+
+int ft_printf(const char *format, ...)
+{
+	int print;
+	va_list args;
+
+	print = 0;
+	va_start(args, format);
+	check_flags(format, args, &print);
 	va_end(args);
 	return print;
 }

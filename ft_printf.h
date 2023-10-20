@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,20 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 #include <unistd.h>
 #include <stdarg.h>
+#include <limits.h>
+#include <stdio.h>
 
 int ft_printf(const char *, ...);
+void ft_print_char(va_list args,int *print);
+void ft_print_str(va_list args, int *print);
+void ft_print_nbr(va_list args, int *print);
 
-int ft_print_char(char arg);
 
-int ft_print_str(char *str);
-
-int ft_print_number(int num);
-
-void ft_putchar(char c);
 
 #endif
