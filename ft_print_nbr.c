@@ -21,22 +21,18 @@ static void ft_put_nbr(int nbr, int *print)
         *print += 11;
         return ;
     }
-    if (nbr < 0)
+    else
     {
+        if(nbr < 0)
+        {
         nbr = nbr * -1;
         write(1, "-", 1);
         *print += 1;
-        ft_put_nbr(nbr, print);
-    }
-    else if (nbr < 10)
-    {
-        ft_put_char((nbr + '0'));
+        }
+        if (nbr >= 10)
+            ft_put_nbr((nbr / 10), print);
+        ft_put_char((nbr % 10 + '0'));
         *print += 1;
-    }
-    else
-    {
-        ft_put_nbr((nbr / 10), print);
-        ft_put_nbr((nbr % 10), print);
     }
 }
 
