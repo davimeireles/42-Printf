@@ -25,6 +25,11 @@ static void check_flags(const char *format, va_list args, int *print)
 				ft_print_str(args,print);
 			if (*format == 'd' || *format == 'i' || *format == 'u')
 				ft_print_nbr(args,print,*format);
+            if(*format == '%')
+            {
+                write(1, "%", 1);
+                *print += 1;
+            }
 		}
 		else
 		{
