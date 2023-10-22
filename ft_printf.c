@@ -24,7 +24,7 @@ static void check_flags(const char *format, va_list args, int *print)
 			if (*format == 's')
 				ft_print_str(args,print);
 			if (*format == 'd' || *format == 'i' || *format == 'u')
-				ft_print_nbr(format,args,print);
+				ft_print_nbr(args,print,*format);
 		}
 		else
 		{
