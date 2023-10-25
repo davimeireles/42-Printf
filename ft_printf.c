@@ -6,13 +6,19 @@
 /*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:51:32 by dmeirele          #+#    #+#             */
-/*   Updated: 2023/10/18 12:06:38 by dmeirele         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:59:45 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void check_flags(const char *format, va_list args, int *print)
+void	ft_put_char(char c, int *print)
+{
+	write(1, &c, 1);
+	*print += 1;
+}
+
+static void	ft_check_flags(const char *format, va_list args, int *print)
 {
 	while (*format)
 	{
@@ -22,32 +28,31 @@ static void check_flags(const char *format, va_list args, int *print)
 			if (*format == 'c')
 				ft_print_char(args, print);
 			if (*format == 's')
-				ft_print_str(args,print);
+				ft_print_str(args, print);
 			if (*format == 'd' || *format == 'i' || *format == 'u')
-				ft_print_nbr(args,print,*format);
-            if(*format == '%')
-            {
-                write(1, "%", 1);
-                *print += 1;
-            }
+				ft_print_nbr(args, print, *format);
+			if (*format == 'x' || *format == 'X' || *format == 'p')
+				ft_print_hex(args, print, *format);
+			if (*format == '%')
+			{
+				write(1, "%", 1);
+				*print += 1;
+			}
 		}
 		else
-		{
-			write(1, format, 1);
-			*print += 1;
-		}
+			ft_put_char(*format, print);
 		format++;
 	}
 }
 
-int ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
-	int print;
-	va_list args;
+	int		print;
+	va_list	args;
 
 	print = 0;
 	va_start(args, format);
-	check_flags(format, args, &print);
+	ft_check_flags(format, args, &print);
 	va_end(args);
-	return print;
+	return (print);
 }

@@ -1,7 +1,7 @@
 NAME = libftprintf.a
 CCW = gcc -Wall -Wextra -Werror
 OBJ_FILES = *.o
-SRC_FILES = ft_printf.c ft_print_char.c ft_print_str.c ft_print_nbr.c
+SRC_FILES = ft_printf.c ft_print_char.c ft_print_str.c ft_print_nbr.c ft_print_hex.c
 
 all: $(NAME)
 

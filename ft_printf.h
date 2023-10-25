@@ -12,17 +12,14 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# include <unistd.h>
+# include <stdarg.h>
 
-#include <unistd.h>
-#include <stdarg.h>
-#include <limits.h>
-#include <stdio.h>
-
-int ft_printf(const char *, ...);
-void ft_print_char(va_list args,int *print);
-void ft_print_str(va_list args, int *print);
-void ft_print_nbr(va_list args, int *print, char format);
-
-
+int		ft_printf(const char *format, ...);
+void	ft_print_char(va_list args, int *print);
+void	ft_print_str(va_list args, int *print);
+void	ft_print_nbr(va_list args, int *print, char format);
+void	ft_print_hex(va_list args, int *print, char format);
+void	ft_put_char(char c, int *print);
 
 #endif
